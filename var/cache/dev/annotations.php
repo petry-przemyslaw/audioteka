@@ -164,12 +164,16 @@ return [[
 '[C]App%5CEntity%5CProduct%23getName' => 1,
 'App%5CEntity%5CProduct%23getPrice' => 0,
 '[C]App%5CEntity%5CProduct%23getPrice' => 1,
+'App%5CEntity%5CProduct%23getCreatedAt' => 0,
+'[C]App%5CEntity%5CProduct%23getCreatedAt' => 1,
 'App%5CEntity%5CProduct%24id' => 0,
 '[C]App%5CEntity%5CProduct%24id' => 1,
 'App%5CEntity%5CProduct%24name' => 0,
 '[C]App%5CEntity%5CProduct%24name' => 1,
 'App%5CEntity%5CProduct%24priceAmount' => 0,
 '[C]App%5CEntity%5CProduct%24priceAmount' => 1,
+'App%5CEntity%5CProduct%24createdAt' => 0,
+'[C]App%5CEntity%5CProduct%24createdAt' => 1,
 'Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController' => 0,
 '[C]Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController' => 1,
 'Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%23__construct' => 0,
@@ -638,7 +642,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1717948350,
+1 => 1718032020,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
