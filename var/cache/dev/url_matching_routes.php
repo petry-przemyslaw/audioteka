@@ -13,6 +13,7 @@ return [
             [['_route' => 'product-add', '_controller' => 'App\\Controller\\Catalog\\AddController'], null, ['POST' => 0], null, false, false, null],
             [['_route' => 'product-list', '_controller' => 'App\\Controller\\Catalog\\ListController'], null, ['GET' => 0], null, false, false, null],
         ],
+        '/product/edit' => [[['_route' => 'product-edit', '_controller' => 'App\\Controller\\Catalog\\EditController'], null, ['POST' => 0], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

@@ -218,6 +218,17 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\Catalog\AddController"/>
       </call>
     </service>
+    <service id="App\Controller\Catalog\EditController" class="App\Controller\Catalog\EditController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="App\ResponseBuilder\ErrorBuilder"/>
+      <call method="setMessageBus">
+        <argument type="service" id="messenger.bus.default"/>
+      </call>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jIxfAsi.App\Controller\Catalog\EditController"/>
+      </call>
+    </service>
     <service id="App\Controller\Catalog\ListController" class="App\Controller\Catalog\ListController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -255,6 +266,11 @@
     <service id="App\Messenger\CreateCartHandler" class="App\Messenger\CreateCartHandler" autowire="true" autoconfigure="true">
       <tag name="messenger.message_handler"/>
       <argument type="service" id="App\Repository\CartRepository"/>
+    </service>
+    <service id="App\Messenger\EditProductInCatalog" class="App\Messenger\EditProductInCatalog" autowire="true" autoconfigure="true"/>
+    <service id="App\Messenger\EditProductInCatalogHandler" class="App\Messenger\EditProductInCatalogHandler" autowire="true" autoconfigure="true">
+      <tag name="messenger.message_handler"/>
+      <argument type="service" id="App\Repository\ProductRepository"/>
     </service>
     <service id="App\Messenger\RemoveProductFromCart" class="App\Messenger\RemoveProductFromCart" autowire="true" autoconfigure="true"/>
     <service id="App\Messenger\RemoveProductFromCartHandler" class="App\Messenger\RemoveProductFromCartHandler" autowire="true" autoconfigure="true">
@@ -762,6 +778,12 @@
           <argument key="App\Messenger\CreateCart" type="collection">
             <argument type="collection">
               <argument>App\Messenger\CreateCartHandler</argument>
+              <argument type="collection"/>
+            </argument>
+          </argument>
+          <argument key="App\Messenger\EditProductInCatalog" type="collection">
+            <argument type="collection">
+              <argument>App\Messenger\EditProductInCatalogHandler</argument>
               <argument type="collection"/>
             </argument>
           </argument>
@@ -1729,6 +1751,9 @@
           <argument>async</argument>
         </argument>
         <argument key="App\Messenger\AddProductToCatalog" type="collection">
+          <argument>async</argument>
+        </argument>
+        <argument key="App\Messenger\EditProductInCatalog" type="collection">
           <argument>async</argument>
         </argument>
         <argument key="App\Messenger\RemoveProductFromCatalog" type="collection">
@@ -2752,6 +2777,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Catalog\AddController" class="App\Controller\Catalog\AddController" autowire="true" abstract="true"/>
     <service id=".instanceof.App\Messenger\MessageBusAwareInterface.0.App\Controller\Catalog\AddController" class="App\Controller\Catalog\AddController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Catalog\AddController" class="App\Controller\Catalog\AddController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Catalog\EditController" class="App\Controller\Catalog\EditController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Catalog\EditController" class="App\Controller\Catalog\EditController" autowire="true" abstract="true"/>
+    <service id=".instanceof.App\Messenger\MessageBusAwareInterface.0.App\Controller\Catalog\EditController" class="App\Controller\Catalog\EditController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Catalog\EditController" class="App\Controller\Catalog\EditController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Catalog\ListController" class="App\Controller\Catalog\ListController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Catalog\ListController" class="App\Controller\Catalog\ListController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Catalog\ListController" class="App\Controller\Catalog\ListController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -2765,6 +2794,8 @@
     <service id=".abstract.instanceof.App\Messenger\AddProductToCatalogHandler" class="App\Messenger\AddProductToCatalogHandler" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Messenger\Handler\MessageHandlerInterface.0.App\Messenger\CreateCartHandler" class="App\Messenger\CreateCartHandler" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Messenger\CreateCartHandler" class="App\Messenger\CreateCartHandler" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Messenger\Handler\MessageHandlerInterface.0.App\Messenger\EditProductInCatalogHandler" class="App\Messenger\EditProductInCatalogHandler" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Messenger\EditProductInCatalogHandler" class="App\Messenger\EditProductInCatalogHandler" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Messenger\Handler\MessageHandlerInterface.0.App\Messenger\RemoveProductFromCartHandler" class="App\Messenger\RemoveProductFromCartHandler" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Messenger\RemoveProductFromCartHandler" class="App\Messenger\RemoveProductFromCartHandler" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Messenger\Handler\MessageHandlerInterface.0.App\Messenger\RemoveProductFromCatalogHandler" class="App\Messenger\RemoveProductFromCatalogHandler" autowire="true" abstract="true"/>
@@ -3176,7 +3207,7 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id=".service_locator.WUT2xEE" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gc5I8kD" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Cart\AddProductController::__invoke" type="service_closure" id=".service_locator.LFLza1u"/>
@@ -3275,6 +3306,10 @@
       <argument type="service" id="App\Messenger\CreateCartHandler"/>
       <argument type="collection"/>
     </service>
+    <service id=".messenger.handler_descriptor.Y.4w1jd" class="Symfony\Component\Messenger\Handler\HandlerDescriptor">
+      <argument type="service" id="App\Messenger\EditProductInCatalogHandler"/>
+      <argument type="collection"/>
+    </service>
     <service id=".messenger.handler_descriptor.pGHZcSn" class="Symfony\Component\Messenger\Handler\HandlerDescriptor">
       <argument type="service" id="App\Messenger\RemoveProductFromCartHandler"/>
       <argument type="collection"/>
@@ -3293,6 +3328,9 @@
         </argument>
         <argument key="App\Messenger\CreateCart" type="iterator">
           <argument type="service" id=".messenger.handler_descriptor.XiLdWcV"/>
+        </argument>
+        <argument key="App\Messenger\EditProductInCatalog" type="iterator">
+          <argument type="service" id=".messenger.handler_descriptor.Y.4w1jd"/>
         </argument>
         <argument key="App\Messenger\RemoveProductFromCart" type="iterator">
           <argument type="service" id=".messenger.handler_descriptor.pGHZcSn"/>
@@ -3367,6 +3405,12 @@
     <service id=".service_locator.jIxfAsi.App\Controller\Catalog\AddController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Catalog\AddController"/>
       <argument>App\Controller\Catalog\AddController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jIxfAsi" method="withContext"/>
+    </service>
+    <service id=".service_locator.jIxfAsi.App\Controller\Catalog\EditController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Catalog\EditController"/>
+      <argument>App\Controller\Catalog\EditController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jIxfAsi" method="withContext"/>
     </service>
@@ -3455,12 +3499,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.WUT2xEE"/>
+      <argument type="service" id=".service_locator.gc5I8kD"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.WUT2xEE"/>
+      <argument type="service" id=".service_locator.gc5I8kD"/>
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
@@ -4089,14 +4133,14 @@
     <service id="doctrine.orm.default_entity_manager.event_manager" alias="doctrine.dbal.default_connection.event_manager"/>
     <service id="doctrine.migrations.metadata_storage" alias="doctrine.migrations.storage.table_storage"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.WUT2xEE"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.gc5I8kD"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="Psr\Log\LoggerInterface" alias="logger"/>
     <service id=".service_locator.GsIjbjK" alias="messenger.receiver_locator"/>
     <service id=".service_locator.Q7if2wv" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.ZBZXtOS" alias=".service_locator.NZdAz3P"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
-    <service id=".service_locator.NJqO0VO" alias=".service_locator.WUT2xEE"/>
+    <service id=".service_locator.8feeCPk" alias=".service_locator.gc5I8kD"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
     <service id=".service_locator._eRAkJb" alias=".service_locator.jIxfAsi"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher" public="true"/>
