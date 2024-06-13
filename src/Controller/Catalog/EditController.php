@@ -26,15 +26,15 @@ class EditController extends AbstractController implements MessageBusAwareInterf
         $id = (string)$request->get('id');
         $name = (string)$request->get('name');
         $price = (int)$request->get('price');
+        $createdAt = new \DateTime();
+//        if ($name === '' || $price < 1) {
+//            return new JsonResponse(
+//                $this->errorBuilder->__invoke('Invalid name or price.'),
+//                Response::HTTP_UNPROCESSABLE_ENTITY
+//            );
+//        }
 
-        if ($name === '' || $price < 1) {
-            return new JsonResponse(
-                $this->errorBuilder->__invoke('Invalid name or price.'),
-                Response::HTTP_UNPROCESSABLE_ENTITY
-            );
-        }
-
-        $this->dispatch(new EditProductInCatalog($id, $name, $price));
+        $this->dispatch(new EditProductInCatalog($id, $name, $price, $createdAt));
 
         return new Response('', Response::HTTP_ACCEPTED);
     }

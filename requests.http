@@ -3,21 +3,18 @@
 POST https://localhost/products
 Content-Type: application/x-www-form-urlencoded
 
-name=Example product 0&price=1200
-
+name=Example product 44&price=444
 
 ### Edit product in catalog
 
 POST https://localhost/product/edit
 Content-Type: application/x-www-form-urlencoded
 
-id=41597f05-2bd4-48bd-b262-22868cb7c84b&name=Example product 30&price=30000
-
-
+id=544b61bf-6a60-413f-a83d-1aaf3f3f75ff&name=Example product 5555&price=55555
 
 ### Remove product from catalog
 
-DELETE https://localhost/products/ec0c615d-0571-4e4b-9582-59a7edaf8117
+DELETE https://localhost/products/408d31bc-69fa-46a8-aee8-0c3e72bba6b6
 
 ### List products
 
@@ -31,11 +28,11 @@ POST https://localhost/cart
 
 ### Add product to cart
 
-PUT https://localhost/cart/{{cart_id}}/b0c08894-a769-49b6-b007-f4da60d2bb6e
+PUT https://localhost/cart/{{cart_id}}/544b61bf-6a60-413f-a83d-1aaf3f3f75ff
 
 ### Remove product from cart
 
-DELETE https://localhost/cart/{{cart_id}}/00c5560b-efb9-4277-beb8-5b4feb594779
+DELETE https://localhost/cart/{{cart_id}}/544b61bf-6a60-413f-a83d-1aaf3f3f75ff
 
 ### Show cart
 

@@ -9,6 +9,7 @@ return [
     'cart-remove-product' => [['cart', 'product'], ['_controller' => 'App\\Controller\\Cart\\RemoveProductController'], [], [['variable', '/', '[^/]++', 'product', true], ['variable', '/', '[^/]++', 'cart', true], ['text', '/cart']], [], [], []],
     'cart-show' => [['cart'], ['_controller' => 'App\\Controller\\Cart\\ShowCartController'], [], [['variable', '/', '[^/]++', 'cart', true], ['text', '/cart']], [], [], []],
     'product-add' => [[], ['_controller' => 'App\\Controller\\Catalog\\AddController'], [], [['text', '/products']], [], [], []],
+    'product-edit' => [[], ['_controller' => 'App\\Controller\\Catalog\\EditController'], [], [['text', '/product/edit']], [], [], []],
     'product-list' => [[], ['_controller' => 'App\\Controller\\Catalog\\ListController'], [], [['text', '/products']], [], [], []],
     'product-delete' => [['product'], ['_controller' => 'App\\Controller\\Catalog\\RemoveController'], [], [['variable', '/', '[^/]++', 'product', true], ['text', '/products']], [], [], []],
 ];

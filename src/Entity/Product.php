@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -48,5 +49,11 @@ class Product implements \App\Service\Catalog\Product
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
+    }
+
+    public function update(string $name, int $price): void
+    {
+        $this->name = $name;
+        $this->priceAmount = $price;
     }
 }
