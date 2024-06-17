@@ -17,7 +17,7 @@ Przykładowe zapytania (jak komunikować się z serwisem) znajdziesz w [requests
 
 Testy uruchamia polecenie `docker compose run --rm php php bin/phpunit`
 
-## Oryginalne wymagania dotyczące serwisu
+## Zadanie
 
 Serwis realizuje obsługę katalogu produktów oraz koszyka. Klient serwisu powinien móc:
 
@@ -28,19 +28,12 @@ Serwis realizuje obsługę katalogu produktów oraz koszyka. Klient serwisu powi
 * dodać produkt do koszyka, przy czym koszyk może zawierać maksymalnie 3 produkty,
 * usunąć produkt z koszyka,
 * wyświetlić produkty w koszyku, wraz z ich całkowitą wartością.
-
-Kod, który masz przed sobą, stara się implementować te wymagania z pomocą `Symfony 6.0`.
-
-## Zadanie
-
-Użytkownicy i testerzy serwisu zgłosili następujące problemy i prośby:
-
 * Chcemy móc dodawać do koszyka ten sam produkt kilka razy, o ile nie zostanie przekroczony sumaryczny limit sztuk produktów. Teraz to nie działa.
 * Limit koszyka nie zawsze działa. Wprawdzie, gdy podczas naszych testów dodajemy czwarty produkt do koszyka to dostajemy komunikat `Cart is full.`, ale pomimo tego i tak niektóre koszyki w bazie danych mają po cztery produkty. 
 * Najnowsze (ostatnio dodane) produkty powinny być dostępne na początkowych stronach listy produktów. 
 * Musimy mieć możliwość edycji produktów. Czasami w nazwach są literówki, innym razem cena jest nieaktualna.
 
-Prosimy o naprawienie / implementację.
+Prosimy implementację.
 
 PS. Prawdziwym celem zadania jest oczywiście kawałek kodu, który możemy ocenić, a potem porozmawiać o nim w czasie interview "twarzą w twarz". Przy czym pamiętaj, że liczy się nie tylko napisany kod PHP, ale także umiejętność przedstawienia czytelnego rozwiązania, użycia odpowiednich narzędzi (chociażby systemu wersjonowania), udowodnienia poprawności rozwiązania (testy) itd. 
 
